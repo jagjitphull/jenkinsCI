@@ -1,7 +1,13 @@
 // Jenkinsfile
 pipeline {
-    agent any // Run this pipeline on any available agent
-
+    agent {
+        docker {
+            image 'python:3.9-slim' // Use a lightweight Python 3.9 image
+            // You can use other tags like 'python:3.11', 'python:latest', etc.
+            // '-slim' versions are smaller.
+        }
+    }
+    
     stages {
         stage('Checkout') { // Stage to checkout the code
             steps {
@@ -13,6 +19,7 @@ pipeline {
 
         stage('Setup Python Environment') { // Stage to set up a virtual environment and install dependencies
             steps {
+                sh python3 --version // verify python3 is available
                 sh 'python3 -m venv venv' // Create a virtual environment
                 // For Windows agents, you might use: bat 'python -m venv venv'
                 // And activate differently: bat 'venv\\Scripts\\activate'
