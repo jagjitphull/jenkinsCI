@@ -1,12 +1,6 @@
 // Jenkinsfile
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9-slim' // Use a lightweight Python 3.9 image
-            // You can use other tags like 'python:3.11', 'python:latest', etc.
-            // '-slim' versions are smaller.
-        }
-    }
+    agent any  // Run this pipeline on any available agent
     
     stages {
         stage('Checkout') { // Stage to checkout the code
