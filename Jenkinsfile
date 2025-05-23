@@ -19,7 +19,7 @@ pipeline {
 
         stage('Setup Python Environment') { // Stage to set up a virtual environment and install dependencies
             steps {
-                sh python3 --version // verify python3 is available
+                sh 'python3 --version' // verify python3 is available
                 sh 'python3 -m venv venv' // Create a virtual environment
                 // For Windows agents, you might use: bat 'python -m venv venv'
                 // And activate differently: bat 'venv\\Scripts\\activate'
